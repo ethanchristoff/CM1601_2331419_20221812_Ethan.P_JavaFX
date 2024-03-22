@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cm1601_2331419_20221812.Rapid_Race_Controller">
+   <children>
+      <MenuBar layoutX="2.0" layoutY="1.0" prefHeight="26.0" prefWidth="600.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exitProgram" text="Exit Program" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#save_DHD" text="save" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Functions" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Button layoutX="544.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToFuncs" text="Back">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="text_output_area" editable="false" layoutX="291.0" layoutY="47.0" prefHeight="282.0" prefWidth="287.0" />
+      <Label layoutX="14.0" layoutY="51.0" text="Enter the Horse ID:" />
+      <TextField fx:id="horseID_DHD" layoutX="121.0" layoutY="47.0" promptText="eg: 002" />
+      <Button fx:id="submitDHD" layoutX="95.0" layoutY="92.0" mnemonicParsing="false" onAction="#DHD_submit" text="Delete" />
+   </children>
+</AnchorPane>

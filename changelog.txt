@@ -1,0 +1,9 @@
+----DEVELOPED BY ETHAN (2331419 20221812)----
+
+V1.0 2024/03/10 8:00PM
+Updated the AHD function, images can now be included into the table (data grid).
+
+V1.1 2024/03/10 8:50PM
+Amended the text file creating by including the image name with it's extension,
+- Occasional issue that may occur includes the horse_data text file creating an extra line.
+- Manually go in an backspace/delete it

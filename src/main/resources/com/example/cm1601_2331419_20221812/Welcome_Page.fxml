@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cm1601_2331419_20221812.Rapid_Race_Controller">
+    <Label layoutX="131.0" layoutY="121.0" text="Welcome To The Rapid Races!" underline="true">
+        <font>
+          <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+    <Button layoutX="241.0" layoutY="225.0" mnemonicParsing="false" onAction="#switchToFuncs" text="Click Me To Start!">
+        <font>
+          <Font name="System Bold" size="12.0" />
+        </font>
+    </Button>
+</Pane>
