@@ -89,7 +89,6 @@ class help{
                 "• SRH is for selecting four horses randomly for the major round.",
                 "• SWH is for selecting the Winning horses details.",
                 "• VWH is for Visualizing the time of the winning horses.",
-                "• In terms of the UHD function, \n  you will have to manually add an image in and then update the image value in your horse data table",
                 "• When updating an image make sure you add one to the horse images folder first",
                 "• The acceptable parameters for the uhd headers are:\n-•\"id\"\n-•\"group\"\n-•\"horse name\"\n-•\"owner\"\n-•\"age\"\n-•\"breed\"\n-•\"performance\"\n-•\"image\""
         };

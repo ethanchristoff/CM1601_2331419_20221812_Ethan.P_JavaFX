@@ -7,10 +7,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cm1601_2331419_20221812.Rapid_Race_Controller">
+<AnchorPane prefHeight="504.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cm1601_2331419_20221812.Rapid_Race_Controller">
    <MenuBar layoutX="3.0" layoutY="1.0" prefHeight="26.0" prefWidth="600.0">
       <Menu mnemonicParsing="false" text="File">
          <MenuItem mnemonicParsing="false" onAction="#exitProgram" text="Exit Program" />
@@ -18,11 +20,8 @@
       <Menu mnemonicParsing="false" text="Edit">
          <MenuItem mnemonicParsing="false" onAction="#uhd_save" text="save" />
       </Menu>
-      <Menu mnemonicParsing="false" text="Help">
-         <MenuItem mnemonicParsing="false" text="Functions" />
-      </Menu>
    </MenuBar>
-   <Button layoutX="547.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToFuncs" text="Back">
+   <Button layoutX="546.0" layoutY="464.0" mnemonicParsing="false" onAction="#switchToFuncs" text="Back">
       <font>
          <Font name="System Bold" size="12.0" />
       </font>
@@ -39,4 +38,10 @@
    <TextField fx:id="UHDValToEdit" layoutX="127.0" layoutY="96.0" prefHeight="26.0" prefWidth="134.0" promptText="eg: horse name" />
    <Label layoutX="14.0" layoutY="142.0" text="New Value:" />
    <TextField fx:id="UHDNewVal" layoutX="127.0" layoutY="137.0" prefHeight="26.0" prefWidth="134.0" />
+   <ImageView fx:id="UHD_imgView" fitHeight="148.0" fitWidth="166.0" layoutX="315.0" layoutY="342.0" onDragDropped="#UHD_imageViewDropped" onDragOver="#UHD_imageViewDragOver" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Horse_Images/none.png" />
+      </image>
+   </ImageView>
+   <Label layoutX="79.0" layoutY="407.0" text="Drag and Drop your updated image here-&gt;" />
 </AnchorPane>

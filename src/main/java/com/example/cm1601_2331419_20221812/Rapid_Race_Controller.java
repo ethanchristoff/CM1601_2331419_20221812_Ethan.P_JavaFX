@@ -186,7 +186,7 @@ public class Rapid_Race_Controller implements Initializable {
     @FXML
     ImageView horse_view;
     @FXML
-    Button next_img,prev_img;
+    Button next_img,prev_img;// Initiating the previous image and next image buttons
     @FXML
     Label horse_img_name;
 
@@ -223,11 +223,11 @@ public class Rapid_Race_Controller implements Initializable {
         }
     }
 
-    String WHD_f_name = "winning_horses.txt";
-    String SRH_f_name = "random_horses.txt";
+    private final String WHD_f_name = "winning_horses.txt";
+    private final String SRH_f_name = "random_horses.txt";
 
     // Initiating the drag and drop function for the imageView to add images to the horse table
-    String img_name;
+    private String img_name;
 
     @FXML
     private ImageView AHD_imgView;
@@ -379,6 +379,47 @@ public class Rapid_Race_Controller implements Initializable {
     @FXML
     private TextField UHDhorseID,UHDValToEdit,UHDNewVal;
 
+    // Initializing the drag and drop function for images to be updated in the UHD function
+    private String UHD_img_name;
+
+    @FXML
+    private ImageView UHD_imgView;
+
+    @FXML
+    public void UHD_imageViewDropped(DragEvent event){
+        Dragboard d_board = event.getDragboard();
+        if (d_board.hasImage() || d_board.hasFiles()){
+            try {
+                List<File> files = d_board.getFiles();
+                File sourceFile = files.get(0);
+                String fileName = sourceFile.getName();
+
+                File destFile = new File("src/main/resources/com/example/cm1601_2331419_20221812/Horse_Images/placeHolderFile" + fileName);
+
+                // Copies the file to the specified folder
+                Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                UHD_img_name = destFile.getName();
+                System.out.println("Image saved as: " + destFile);
+
+                // Sets the current imageview to display the dragged image
+                UHD_imgView.setImage(new Image(new FileInputStream(d_board.getFiles().get(0))));
+            } catch (IOException e) {
+                System.out.println("There was an issue!");
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @FXML
+    public void UHD_imageViewDragOver(DragEvent event){
+        Dragboard d_board = event.getDragboard();
+        if (d_board.hasImage() || d_board.hasFiles()){
+            event.acceptTransferModes(TransferMode.COPY);
+        }
+        event.consume();
+    }
+
     public void UHD_submit(){
         String inp_ID = UHDhorseID.getText();
         String inp_Val = UHDValToEdit.getText();
@@ -420,8 +461,17 @@ public class Rapid_Race_Controller implements Initializable {
             alert.setContentText("There is no such column!");
             alert.showAndWait();
             return; // Stops further execution
-        }
-        tempdata=run_uhd(inp_ID, col, inp_New_Val);
+        }else if ((col == 7) && ((this.UHD_img_name == null) || (this.UHD_img_name.isEmpty()))){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Missing Data");
+            alert.setHeaderText(null);
+            alert.setContentText("Ensure that there is an image!");
+            alert.showAndWait();
+            return; // Stops further execution
+        }else if (col==7)
+            tempdata=run_uhd(inp_ID, col, UHD_img_name);
+        else
+            tempdata=run_uhd(inp_ID, col, inp_New_Val);
     }
 
     public void uhd_save(){
