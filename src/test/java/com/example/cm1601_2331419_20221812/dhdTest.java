@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class dhdTest {
 
-    dhd DHD_obj = new dhd();
+    file_manip f_obj = new file_manip();
+    String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
+
+    dhd DHD_obj = new dhd(horseData);
 
     @Test
     /*

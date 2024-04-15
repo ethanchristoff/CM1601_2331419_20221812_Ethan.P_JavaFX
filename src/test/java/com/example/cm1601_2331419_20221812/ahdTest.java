@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 class ahdTest {
-    ahd AHD_obj = new ahd();
+    file_manip f_obj = new file_manip();
+    private final String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
+    ahd AHD_obj = new ahd(horseData);
 
     @Test
     // Test to see what happens if user tries to enter value into table that is already full
@@ -34,13 +36,17 @@ class ahdTest {
      dragged and dropped into the image area)
     */
     void correctINP(){
+        dhd dhd_obj = new dhd(horseData);
+        String[][] test_data=dhd_obj.DHD("020");
+        ahd new_AHD_obj = new ahd(test_data);
+        // Removing a value from the table to give way for a new value to be inserted
         String[] test_input ={"020","D", "Velocity-Voyager", "Joseph-Perez", "3_years", "Appaloosa", "2-wins-in-5-races","horse_1.jpg"};
         assertNotNull(test_input);
         /*
          A table of the type String[][] is returned if the process is successful,
          so the return type should not be null
          */
-        vhd VHD_OBJ = new vhd(AHD_obj.AHD(test_input));
+        vhd VHD_OBJ = new vhd(new_AHD_obj.AHD(test_input));
         VHD_OBJ.printTable();// The updated table will be outputted as such
     }
 }

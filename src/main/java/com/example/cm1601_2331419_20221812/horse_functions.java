@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Random;
 
 class file_manip{
-    String[][] return_data(){
+    public String[][] return_data(){
         return new String[][]{
                 {"001", "A", "Speedy-Runner", "Jane-Smith", "5_years", "Thoroughbred", "5-wins-in-10-races","horse_1.jpg"},
                 {"002", "A", "Jitty-Sprinter", "John-Doe", "3_years", "Quarter-Horse", "2-wins-in-5-races","horse_2.jpg"},
@@ -41,7 +41,7 @@ class file_manip{
         };
     }
 
-    String[][] read_from_file(String path) {
+    public String[][] read_from_file(String path) {
         List<String[]> rows = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -57,7 +57,7 @@ class file_manip{
         return rows.toArray(new String[0][]);
     }
 
-    void write_to_file(String path, String[][] horseData){
+    public void write_to_file(String path, String[][] horseData){
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             for (String[] row : horseData) {
@@ -71,7 +71,7 @@ class file_manip{
     }
 
     // The following method finds the path of the horse_data.txt file and returns its value as a string
-    String find_f_path(String fileName){
+    public String find_f_path(String fileName){
         Path currentPath = Paths.get("").toAbsolutePath();
         String horseDataPath = currentPath + "\\" +fileName;//Concatanating the path
         return horseDataPath;
@@ -80,7 +80,7 @@ class file_manip{
 }
 
 class help{
-    void getHelp(){
+    public void getHelp(){
         String[] help = {
                 "• AHD is for adding horse details.",
                 "• UHD is for updating horse details.",
@@ -106,7 +106,7 @@ class validation{
     }
 
 
-    boolean tbl_count_check(){
+    public boolean tbl_count_check(){
         int count = horseData.length;
         if (count<20){
             return false;// If count < 20 number of values is too little, so it returns false
@@ -204,9 +204,14 @@ class vhd{
 
 class ahd // The update horse details function
 {
-    String[][] AHD(String[] usr_inp) {
+    private final String[][] horseData;
+
+    public ahd(String[][] horseData){
+        this.horseData=horseData;
+    }
+
+    public String[][] AHD(String[] usr_inp) {
         file_manip f_obj = new file_manip();
-        String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
         validation v_obj = new validation(horseData);
         boolean state = v_obj.tbl_count_check();
         if (state) {
@@ -242,7 +247,7 @@ class ahd // The update horse details function
 
 class uhd // The update horse details function
 {
-    String[][] UHD(String h_id, int valToEdit, String newVal){
+    public String[][] UHD(String h_id, int valToEdit, String newVal){
         file_manip f_obj = new file_manip();
         String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
         validation v_obj = new validation(horseData);
@@ -270,14 +275,19 @@ class uhd // The update horse details function
 
 class dhd // The delete horse details function
 {
+    private final String[][] horseData;
+
+    public dhd(String[][] horseData){
+        this.horseData=horseData;
+    }
+
     /*
     The DHD class here takes in the users input (as in the ID of the horse to delete and then
     parses it into an integer value.
     */
-    String[][] DHD(String u_inp)
+    public String[][] DHD(String u_inp)
     {
         file_manip f_obj = new file_manip();
-        String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
         if (Integer.parseInt(u_inp) > horseData.length || Integer.parseInt(u_inp) <= 0){
             /*
             For the sake of ensuring that the users input is in a certain range
@@ -307,6 +317,7 @@ class srd // Selecting 4 random horses from each of the 4 groups
 {
     private final String[][] horseData;
 
+    // Setting the SRD constructor to take in horse data as an input whenever its initialized
     public srd(String[][] horseData){
         this.horseData = horseData;
     }
@@ -395,13 +406,13 @@ class srd // Selecting 4 random horses from each of the 4 groups
 
 class swh // Selecting the winning horse details
 {
-    String[][] randData;
+    private final String[][] randData;
 
     public swh(String[][] randData) {
         this.randData = randData;
     }
 
-    String[][] SWH() {
+    public String[][] SWH() {
         String[][] winningHorses = new String[4][2]; // Only two columns for owner name and random value
         Random rand = new Random();
         for (int i = 0; i < randData.length; i++) {

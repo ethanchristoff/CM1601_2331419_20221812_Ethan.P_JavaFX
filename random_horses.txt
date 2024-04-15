@@ -1,4 +1,4 @@
-001,A,Speedy-Runner,Jane-Smith,5_years,Thoroughbred,5-wins-in-10-races,horse_1.jpg
-010,B,Turbo-Trotter,William-Harris,6_years,Arabian,4-wins-in-9-races,horse_10.jpg
-011,C,Energetic-Equine,Laura-Clark,2_years,Paint-Horse,1-win-in-3-races,horse_11.jpg
-017,D,Speedster-Supreme,Sophia-Turner,2_years,Arabian,1-win-in-3-races,horse_17.jpg
+003,A,Fast-Racer,Emily-Johnson,4_years,Arabian,3-wins-in-7-races,horse_3.jpg
+006,B,Flash-Runner,David-Anderson,7_years,Appaloosa,6-wins-in-10-races,horse_6.jpg
+015,C,Quick-Canter,Olivia-Hall,4_years,Thoroughbred,3-wins-in-7-races,horse_15.jpg
+019,D,Swift-Sprinter,Megan-Mitchell,5_years,Mustang,5-wins-in-10-races,horse_19.jpg

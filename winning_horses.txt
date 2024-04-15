@@ -1,4 +1,4 @@
-Speedy-Runner,42
-Turbo-Trotter,46
-Energetic-Equine,30
-Speedster-Supreme,51
+Fast-Racer,58
+Flash-Runner,8
+Quick-Canter,5
+Swift-Sprinter,34

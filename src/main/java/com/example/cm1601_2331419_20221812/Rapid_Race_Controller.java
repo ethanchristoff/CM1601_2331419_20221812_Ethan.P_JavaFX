@@ -300,7 +300,8 @@ public class Rapid_Race_Controller implements Initializable {
     String[] row_to_add = new String[8];
 
     private void run_ahd(){
-        ahd ahd_obj = new ahd();
+        String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
+        ahd ahd_obj = new ahd(horseData);
         rowToAdd= ahd_obj.AHD(row_to_add);
     }
 
@@ -506,7 +507,7 @@ public class Rapid_Race_Controller implements Initializable {
                 alert.showAndWait();
                 return; // Stop further execution
             }
-            dhd DHD = new dhd();
+            dhd DHD = new dhd(horseData);
             tempdata=DHD.DHD(horseID);
         }
         catch (Exception e){
