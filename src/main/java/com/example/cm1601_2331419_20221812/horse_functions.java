@@ -206,21 +206,18 @@ class ahd // The update horse details function
 {
     private final String[][] horseData;
 
-    public ahd(String[][] horseData){
-        this.horseData=horseData;
-    }
+    public ahd(String[][] horseData){this.horseData=horseData;}
 
     public String[][] AHD(String[] usr_inp) {
-        file_manip f_obj = new file_manip();
         validation v_obj = new validation(horseData);
         boolean state = v_obj.tbl_count_check();
-        if (state) {
+        if (state)
             System.out.println("There are already 20 values in the data set delete one!");
-        } else if(v_obj.group_checker()){
+        else if(v_obj.group_checker())
             return null;
-        } else if(v_obj.id_checker(usr_inp)) {
+        else if(v_obj.id_checker(usr_inp))
             System.out.println("The ID already exists!");
-        } else {
+        else{
             String[] values = new String[8];
             int index = 0;
             while (index < values.length && values[index] != null && !values[index].isEmpty()) {
@@ -277,9 +274,7 @@ class dhd // The delete horse details function
 {
     private final String[][] horseData;
 
-    public dhd(String[][] horseData){
-        this.horseData=horseData;
-    }
+    public dhd(String[][] horseData){this.horseData=horseData;}
 
     /*
     The DHD class here takes in the users input (as in the ID of the horse to delete and then
@@ -287,7 +282,6 @@ class dhd // The delete horse details function
     */
     public String[][] DHD(String u_inp)
     {
-        file_manip f_obj = new file_manip();
         if (Integer.parseInt(u_inp) > horseData.length || Integer.parseInt(u_inp) <= 0){
             /*
             For the sake of ensuring that the users input is in a certain range
@@ -417,9 +411,10 @@ class swh // Selecting the winning horse details
         Random rand = new Random();
         for (int i = 0; i < randData.length; i++) {
             int rand_time = rand.nextInt(90) + 1; // Ensure random value is between 1 and 90
-            winningHorses[i][0] = randData[i][2]; // Owner name
-            winningHorses[i][1] = Integer.toString(rand_time); // Random value
+            winningHorses[i][0] = randData[i][2]; // Setting the 0'th index to the Owners name in the winningHorses 2d array
+            winningHorses[i][1] = Integer.toString(rand_time); // Assigning the Random value to the winningHorses 2d array
         }
+        // Printing out the winning horse details with the names and times
         for (String[] winningHors : winningHorses) {
             for (String winningHor : winningHors) {
                 System.out.print(winningHor+" ");

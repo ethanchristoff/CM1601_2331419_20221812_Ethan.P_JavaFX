@@ -168,7 +168,7 @@ public class Rapid_Race_Controller implements Initializable {
     @FXML
     private ChoiceBox<String> columnSort;
 
-    private final String[] headers = {"id", "group", "horse name", "owner", "age", "breed", "performance"};
+    private final String[] headers = {"id", "group", "horse name", "owner", "age", "breed", "performance", "Images"};
 
 
     private void test(ActionEvent event){
@@ -461,14 +461,12 @@ public class Rapid_Race_Controller implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("There is no such column!");
             alert.showAndWait();
-            return; // Stops further execution
         }else if ((col == 7) && ((this.UHD_img_name == null) || (this.UHD_img_name.isEmpty()))){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Missing Data");
             alert.setHeaderText(null);
             alert.setContentText("Ensure that there is an image!");
             alert.showAndWait();
-            return; // Stops further execution
         }else if (col==7)
             tempdata=run_uhd(inp_ID, col, UHD_img_name);
         else

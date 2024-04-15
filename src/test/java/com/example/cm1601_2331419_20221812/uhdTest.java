@@ -21,7 +21,7 @@ class uhdTest {
     @Test
     // The following test outputs what happens if the user enters the correct ID
     void correctID(){
-        assertNotNull(UHD_obj.UHD("020",2/*index of column to replace the present data*/,"test horse name"/*val to replace*/));
+        assertNotNull(UHD_obj.UHD("020",2/*index of column to replace the present data*/,"test horse    name"/*val to replace*/));
         /*
         The table will be printed out with the updated value, this process will be executed assuming
         that the ID being looked for already exists

@@ -3,6 +3,7 @@ package com.example.cm1601_2331419_20221812;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -12,6 +13,8 @@ public class RapidRun_App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RapidRun_App.class.getResource("Welcome_Page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        // Attaches the icon to the stage/window
+        stage.getIcons().add(new Image(RapidRun_App.class.getResourceAsStream("/ICON.jpg")));
         stage.setTitle("Rapid Races");
         stage.setScene(scene);
         stage.show();
