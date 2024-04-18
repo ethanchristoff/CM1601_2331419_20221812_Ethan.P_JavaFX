@@ -1,4 +1,4 @@
 003,A,Fast-Racer,Emily-Johnson,4_years,Arabian,3-wins-in-7-races,horse_3.jpg
-006,B,Flash-Runner,David-Anderson,7_years,Appaloosa,6-wins-in-10-races,horse_6.jpg
-015,C,Quick-Canter,Olivia-Hall,4_years,Thoroughbred,3-wins-in-7-races,horse_15.jpg
-019,D,Swift-Sprinter,Megan-Mitchell,5_years,Mustang,5-wins-in-10-races,horse_19.jpg
+009,B,Velocity-Vaulter,Sarah-Taylor,4_years,Quarter-Horse,3-wins-in-7-races,horse_9.jpg
+013,C,Sonic-Speedster,Amanda-White,5_years,Appaloosa,5-wins-in-10-races,horse_13.jpg
+018,D,Race-Rocket,Christopher-Evans,7_years,Paint-Horse,6-wins-in-10-races,horse_18.jpg

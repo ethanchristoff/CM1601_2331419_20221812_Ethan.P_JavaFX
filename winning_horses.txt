@@ -1,4 +1,4 @@
-Fast-Racer,58
-Flash-Runner,8
-Quick-Canter,5
-Swift-Sprinter,34
+Fast-Racer,61
+Velocity-Vaulter,19
+Sonic-Speedster,78
+Race-Rocket,30
