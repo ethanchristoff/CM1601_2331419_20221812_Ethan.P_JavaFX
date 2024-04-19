@@ -71,6 +71,7 @@ public class Rapid_Race_Controller implements Initializable {
 
     // Initiating the file object so that files can be read, written into and printed
     file_manip f_obj = new file_manip();
+    validation v_obj = new validation(f_obj.read_from_file(f_obj.find_f_path("horse_data.txt")));
 
     public static TextArea staticTxtArea;
     private Stage stage;
@@ -127,27 +128,51 @@ public class Rapid_Race_Controller implements Initializable {
     }
 
     public void switchToSRH(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SRH.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (!v_obj.tbl_count_check()){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Missing Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Ensure that your horse data table has 20 horses with 5 horses per group!");
+            alert.showAndWait();
+        }else{
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SRH.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void switchToSWH(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SWH.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (!v_obj.tbl_count_check()){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Missing Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Ensure that your horse data table has 20 horses with 5 horses per group!");
+            alert.showAndWait();
+        }else{
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SWH.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void switchToVWH(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VWH.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (!v_obj.tbl_count_check()){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Missing Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Ensure that your horse data table has 20 horses with 5 horses per group!");
+            alert.showAndWait();
+        }else{
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VWH.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
@@ -176,11 +201,21 @@ public class Rapid_Race_Controller implements Initializable {
     }
 
     // Argument taken in by run_vhd is the header to sort by
+    @FXML
+    Label horse_counter,GA,GB,GC,GD;
+
     private void run_vhd(String head){
+        horse_counter.setVisible(true);
+        int horse_count = v_obj.horse_counter();
+        int[] group_count = v_obj.group_counter();
+        horse_counter.setText(Integer.toString(horse_count));
+        GA.setText(Integer.toString(group_count[0]));
+        GB.setText(Integer.toString(group_count[1]));
+        GC.setText(Integer.toString(group_count[2]));
+        GD.setText(Integer.toString(group_count[3]));
         vhd v_o = new vhd(f_obj.read_from_file(f_obj.find_f_path("horse_data.txt")));
         v_o.run_vhd(head);
     }
-
     // Initializing the image view function
 
     @FXML
@@ -422,55 +457,64 @@ public class Rapid_Race_Controller implements Initializable {
     }
 
     public void UHD_submit(){
-        String inp_ID = UHDhorseID.getText();
-        String inp_Val = UHDValToEdit.getText();
-        String inp_New_Val = UHDNewVal.getText();
-        if (inp_ID.isEmpty() || inp_Val.isEmpty() || inp_New_Val.isEmpty()){
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Missing Information");
+        String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
+        if (horseData.length == 0){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Empty Table");
             alert.setHeaderText(null);
-            alert.setContentText("Ensure that all the fields are filled");
+            alert.setContentText("The table is empty! There are no fields to update...");
             alert.showAndWait();
-            return; // Stop further execution
-        }
-        // Check if inp_ID is numeric
-        try {
-            int id = Integer.parseInt(inp_ID);
-            if (id < 1 || id > 20) {
-                throw new NumberFormatException();
+        }else{
+            String inp_ID = UHDhorseID.getText();
+            String inp_Val = UHDValToEdit.getText();
+            String inp_New_Val = UHDNewVal.getText();
+            if (inp_ID.isEmpty() || inp_Val.isEmpty() || inp_New_Val.isEmpty()){
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Missing Information");
+                alert.setHeaderText(null);
+                alert.setContentText("Ensure that all the fields are filled");
+                alert.showAndWait();
+                return; // Stop further execution
             }
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText(null);
-            alert.setContentText("The horse ID must be a number between 001 and 020");
-            alert.showAndWait();
-            return; // Stops further execution
-        }
-        String[] headers = {"id","group","horse name","owner","age","breed","performance","image"};
-        int col = -1; // Initialize to an invalid value
-        for (int i = 0; i < headers.length; i++) {
-            if (inp_Val.equalsIgnoreCase(headers[i])) {
-                col = i;
-                break; // Exit the loop once a match is found
+            // Check if inp_ID is numeric
+            try {
+                int id = Integer.parseInt(inp_ID);
+                if (id < 1 || id > 20) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText(null);
+                alert.setContentText("The horse ID must be a number between 001 and 020");
+                alert.showAndWait();
+                return; // Stops further execution
             }
+            String[] headers = {"id","group","horse name","owner","age","breed","performance","image"};
+            int col = -1; // Initialize to an invalid value
+            for (int i = 0; i < headers.length; i++) {
+                if (inp_Val.equalsIgnoreCase(headers[i])) {
+                    col = i;
+                    break; // Exit the loop once a match is found
+                }
+            }
+            if (col == -1) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText(null);
+                alert.setContentText("There is no such column!");
+                alert.showAndWait();
+            }else if ((col == 7) && ((this.UHD_img_name == null) || (this.UHD_img_name.isEmpty()))){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Missing Data");
+                alert.setHeaderText(null);
+                alert.setContentText("Ensure that there is an image!");
+                alert.showAndWait();
+            }else if (col==7)
+                tempdata=run_uhd(inp_ID, col, UHD_img_name);
+            else
+                tempdata=run_uhd(inp_ID, col, inp_New_Val);
         }
-        if (col == -1) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText(null);
-            alert.setContentText("There is no such column!");
-            alert.showAndWait();
-        }else if ((col == 7) && ((this.UHD_img_name == null) || (this.UHD_img_name.isEmpty()))){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Missing Data");
-            alert.setHeaderText(null);
-            alert.setContentText("Ensure that there is an image!");
-            alert.showAndWait();
-        }else if (col==7)
-            tempdata=run_uhd(inp_ID, col, UHD_img_name);
-        else
-            tempdata=run_uhd(inp_ID, col, inp_New_Val);
     }
 
     public void uhd_save(){
@@ -483,39 +527,46 @@ public class Rapid_Race_Controller implements Initializable {
     private TextField horseID_DHD;
 
     public void DHD_submit(){
-        String horseID = horseID_DHD.getText();
         String[][] horseData = f_obj.read_from_file(f_obj.find_f_path("horse_data.txt"));
+        if (horseData.length == 0){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Empty Table");
+            alert.setHeaderText(null);
+            alert.setContentText("The table is empty! There are no values to delete...");
+            alert.showAndWait();
+        }else{
+            String horseID = horseID_DHD.getText();
         /*
         A try/catch error handling method is referred to here to make it such that only numeric values
         may be entered into the horseID field
          */
-        Alert alert = new Alert(AlertType.WARNING);
-        try{
-            if (horseID.isEmpty()){
+            Alert alert = new Alert(AlertType.WARNING);
+            try{
+                if (horseID.isEmpty()){
 
-                alert.setTitle("Missing Information");
+                    alert.setTitle("Missing Information");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ensure that the field is filled");
+                    alert.showAndWait();
+                    return; // Stop further execution
+                } else if (Integer.parseInt(horseID) > horseData.length || Integer.parseInt(horseID) <= 0) {
+                    alert.setTitle("Out Of Range");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ensure that the ID is in the table");
+                    alert.showAndWait();
+                    return; // Stop further execution
+                }
+                dhd DHD = new dhd(horseData);
+                tempdata=DHD.DHD(horseID);
+            }
+            catch (Exception e){
+                alert.setTitle("None Numeric Value");
                 alert.setHeaderText(null);
-                alert.setContentText("Ensure that the field is filled");
-                alert.showAndWait();
-                return; // Stop further execution
-            } else if (Integer.parseInt(horseID) > horseData.length || Integer.parseInt(horseID) <= 0) {
-                alert.setTitle("Out Of Range");
-                alert.setHeaderText(null);
-                alert.setContentText("Ensure that the ID is in the table");
+                alert.setContentText("The value entered is not Numeric or does not have the form of an id (eg: 020) ");
                 alert.showAndWait();
                 return; // Stop further execution
             }
-            dhd DHD = new dhd(horseData);
-            tempdata=DHD.DHD(horseID);
         }
-        catch (Exception e){
-            alert.setTitle("None Numeric Value");
-            alert.setHeaderText(null);
-            alert.setContentText("The value entered is not Numeric or does not have the form of an id (eg: 020) ");
-            alert.showAndWait();
-            return; // Stop further execution
-        }
-
     }
 
     public void save_DHD(){

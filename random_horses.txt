@@ -1,4 +1,4 @@
-003,A,Fast-Racer,Emily-Johnson,4_years,Arabian,3-wins-in-7-races,horse_3.jpg
-009,B,Velocity-Vaulter,Sarah-Taylor,4_years,Quarter-Horse,3-wins-in-7-races,horse_9.jpg
-013,C,Sonic-Speedster,Amanda-White,5_years,Appaloosa,5-wins-in-10-races,horse_13.jpg
-018,D,Race-Rocket,Christopher-Evans,7_years,Paint-Horse,6-wins-in-10-races,horse_18.jpg
+004,A,Quick-Gallop,Michael-Brown,6_years,Paint-Horse,4-wins-in-9-races,horse_4.jpg
+010,B,Turbo-Trotter,William-Harris,6_years,Arabian,4-wins-in-9-races,horse_10.jpg
+012,C,Mercury-Mount,Kevin-Martinez,7_years,Mustang,6-wins-in-10-races,horse_12.jpg
+017,D,Speedster-Supreme,Sophia-Turner,2_years,Arabian,1-win-in-3-races,horse_17.jpg

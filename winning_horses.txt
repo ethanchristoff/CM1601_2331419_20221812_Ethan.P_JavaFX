@@ -1,4 +1,4 @@
-Fast-Racer,61
-Velocity-Vaulter,19
-Sonic-Speedster,78
-Race-Rocket,30
+Quick-Gallop,57
+Turbo-Trotter,34
+Mercury-Mount,29
+Speedster-Supreme,27

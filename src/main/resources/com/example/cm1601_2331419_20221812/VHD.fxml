@@ -46,4 +46,14 @@
         </font>
     </Label>
    <Button fx:id="prev_img" layoutX="65.0" layoutY="469.0" mnemonicParsing="false" onAction="#displayimgprev" text="Previous Image" />
+   <Label fx:id="horse_counter" layoutX="148.0" layoutY="118.0" />
+   <Label layoutX="31.0" layoutY="118.0" text="Total No of horses:" />
+   <Label layoutX="31.0" layoutY="136.0" text="Group A:" />
+   <Label layoutX="31.0" layoutY="154.0" text="Group B:" />
+   <Label layoutX="31.0" layoutY="172.0" text="Group C:" />
+   <Label layoutX="31.0" layoutY="190.0" text="Group D:" />
+   <Label fx:id="GA" layoutX="139.0" layoutY="136.0" />
+   <Label fx:id="GB" layoutX="139.0" layoutY="154.0" />
+   <Label fx:id="GC" layoutX="139.0" layoutY="172.0" />
+   <Label fx:id="GD" layoutX="139.0" layoutY="190.0" />
 </AnchorPane>

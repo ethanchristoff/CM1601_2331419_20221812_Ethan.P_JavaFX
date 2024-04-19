@@ -2,9 +2,7 @@ package com.example.cm1601_2331419_20221812;
 
 import javafx.scene.control.Alert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -12,8 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Random;
 
 class file_manip{
     public String[][] return_data(){
@@ -73,7 +69,7 @@ class file_manip{
     // The following method finds the path of the horse_data.txt file and returns its value as a string
     public String find_f_path(String fileName){
         Path currentPath = Paths.get("").toAbsolutePath();
-        String horseDataPath = currentPath + "\\" +fileName;//Concatanating the path
+        String horseDataPath = currentPath + "\\" +fileName;// Concatanating the path
         return horseDataPath;
     }
 
@@ -141,6 +137,35 @@ class validation{
         return false;
     }
 
+    public int[] group_counter(){
+        int[] returnArr = {0,0,0,0};
+        for (int i = 0; i < horseData.length; i++) {
+            switch (horseData[i][1].toLowerCase()){
+                case "a":
+                    returnArr[0]++;
+                    break;
+                case "b":
+                    returnArr[1]++;
+                    break;
+                case "c":
+                    returnArr[2]++;
+                    break;
+                case "d":
+                    returnArr[3]++;
+                    break;
+            }
+        }
+        return returnArr;
+    }
+
+    public int horse_counter(){
+        int horse_count = 0;
+        for (int i = 0; i < horseData.length; i++) {
+           horse_count++;
+        }
+        return  horse_count;
+    }
+
     // The purpose of this function is to ensure that the ID inputted by the user doesn't already exist
     public boolean id_checker(String[] usr_inp){
         for (String[] horseDatum : horseData) {
@@ -185,19 +210,23 @@ class vhd{
     }
 
     public void run_vhd(String head){
-        String[] headers = {"id", "group", "horse name", "owner", "age", "breed", "performance"};
-        int colidx=0;
+        if (horseData.length<=0)
+            System.out.println("THERE IS NO DATA IN THE TABLE!");
+        else{
+            String[] headers = {"id", "group", "horse name", "owner", "age", "breed", "performance"};
+            int colidx=0;
 
 
-        for (int i=0;i<headers.length;i++){
-            if (headers[i].equals(head)){
-                colidx=i;
-                break;
+            for (int i=0;i<headers.length;i++){
+                if (headers[i].equals(head)){
+                    colidx=i;
+                    break;
+                }
             }
+            System.out.printf("\nThe following data was sorted by the column: %s,\n",head);
+            bubbleSortByColumn(colidx); // Sorting by column specified by user
+            printTable();
         }
-        System.out.printf("\nThe following data was sorted by the column: %s,\n",head);
-        bubbleSortByColumn(colidx); // Sorting by column specified by user
-        printTable();
     }
 
 }
