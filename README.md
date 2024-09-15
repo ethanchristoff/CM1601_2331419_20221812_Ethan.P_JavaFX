@@ -26,3 +26,5 @@ Here the horse details are put through the process of having a value from 0¬90 
 
 9. View Winning Horse Details (VWH)
 For the final code/process, all it does is read the winning horse details file and present it using stars (*) having each star represent ten seconds. A place is further assigned to the winning horse. Refer to the following figure to see what the data is expected to come out as:
+
+10. Consists of test cases as well (utilizing junit 5) to test each method and ensure that they work in multiple tests.
